@@ -40,13 +40,13 @@ if uploaded_file is not None:
         # Calcular e exibir os valores mínimos e máximos de kN e mm
         min_value_kn = df['kN'].min()
         max_value_kn = df['kN'].max()
-        st.write(f"kN Minimo: {min_value_kn}")
-        st.write(f"kN Maximo: {max_value_kn}")
+        st.write(f"kN Minimo: {min_value_kn:.2f}")
+        st.write(f"kN Maximo: {max_value_kn:.2f}")
         
         min_value_mm = df['mm'].min()
         max_value_mm = df['mm'].max()
-        st.write(f"mm Minimo: {min_value_mm}")
-        st.write(f"mm Maximo: {max_value_mm}")
+        st.write(f"mm Minimo: {min_value_mm:.2f}")
+        st.write(f"mm Maximo: {max_value_mm:.2f}")
         
         # Gráfico
         fig, ax = plt.subplots()
