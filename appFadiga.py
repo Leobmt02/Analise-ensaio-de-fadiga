@@ -35,18 +35,18 @@ if uploaded_file is not None:
     if not df_filtered.empty:
         # Calcular e exibir o valor máximo de ciclos
         max_value_cycles = df['CycleCount'].max()
-        st.write(f"Cycles: {max_value_cycles}")
+        st.write(f"Cycles: {max_value_cycles} Ciclos")
         
         # Calcular e exibir os valores mínimos e máximos de kN e mm
         min_value_kn = df['kN'].min()
         max_value_kn = df['kN'].max()
-        st.write(f"kN Minimo: {min_value_kn:.2f}")
-        st.write(f"kN Maximo: {max_value_kn:.2f}")
+        st.write(f"kN Minimo: {min_value_kn:.2f} kN")
+        st.write(f"kN Maximo: {max_value_kn:.2f} kN")
         
         min_value_mm = df['mm'].min()
         max_value_mm = df['mm'].max()
-        st.write(f"mm Minimo: {min_value_mm:.2f}")
-        st.write(f"mm Maximo: {max_value_mm:.2f}")
+        st.write(f"mm Minimo: {min_value_mm:.2f} mm")
+        st.write(f"mm Maximo: {max_value_mm:.2f} mm")
         
         # Gráfico
         fig, ax = plt.subplots()
