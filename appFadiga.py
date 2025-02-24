@@ -19,17 +19,17 @@ if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, delimiter=delimiter, encoding='utf-8', skiprows=2, usecols=['CycleCount', 'mm', 'kN'])
     
     # Exibir as primeiras linhas do DataFrame
-    st.write(df.head())
+    #st.write(df.head())
     
     # Selecionar as colunas desejadas para os eixos X e Y
     x_column = st.selectbox("Escolha a coluna para o eixo X", ['CycleCount'])
     y_column = st.selectbox("Escolha a coluna para o eixo Y", ['mm', 'kN'])
     
     # Filtrar o DataFrame com as colunas selecionadas
-    df_filtered = df[[x_column, y_column]]
+    #df_filtered = df[[x_column, y_column]]
     
     # Exibir o DataFrame filtrado
-    st.write(df_filtered)
+    #st.write(df_filtered)
     
     # Verificar se há dados suficientes para plotar
     if not df_filtered.empty:
