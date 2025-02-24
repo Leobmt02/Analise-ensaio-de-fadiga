@@ -26,7 +26,7 @@ if uploaded_file is not None:
     y_column = st.selectbox("Escolha a coluna para o eixo Y", ['mm', 'kN'])
     
     # Filtrar o DataFrame com as colunas selecionadas
-    #df_filtered = df[[x_column, y_column]]
+    df_filtered = df[[x_column, y_column]]
     
     # Exibir o DataFrame filtrado
     #st.write(df_filtered)
