@@ -18,48 +18,34 @@ if uploaded_file is not None:
     # Carregar o arquivo CSV com ajuste no delimitador e na codificação
     df = pd.read_csv(uploaded_file, delimiter=delimiter, encoding='utf-8', skiprows=2, usecols=['CycleCount', 'mm', 'kN'])
     
-    # Exibir as primeiras linhas do DataFrame
-    #st.write(df.head())
-    
-    # Selecionar as colunas desejadas para os eixos X e Y
-    x_column = st.selectbox("Escolha a coluna para o eixo X", ['CycleCount'])
-    y_column = st.selectbox("Escolha a coluna para o eixo Y", ['mm', 'kN'])
-    
-    # Filtrar o DataFrame com as colunas selecionadas
-    df_filtered = df[[x_column, y_column]]
-    
-    # Exibir o DataFrame filtrado
-    #st.write(df_filtered)
-    
     # Verificar se há dados suficientes para plotar
-    if not df_filtered.empty:
+    if not df.empty:
         # Calcular e exibir o valor máximo de ciclos
         max_value_cycles = df['CycleCount'].max()
         st.write(f"Cycles: {max_value_cycles} Ciclos")
         
         # Calcular e exibir os valores mínimos e máximos de kN e mm
-        min_value_kn = df['kN'].min()
-        max_value_kn = df['kN'].max()
-        st.write(f"kN Minimo: {min_value_kn:.2f} kN")
-        st.write(f"kN Maximo: {max_value_kn:.2f} kN")
-        
-        min_value_mm = df['mm'].min()
-        max_value_mm = df['mm'].max()
-        st.write(f"mm Minimo: {min_value_mm:.2f} mm")
-        st.write(f"mm Maximo: {max_value_mm:.2f} mm")
-        
-        # Gráfico
-        fig, ax = plt.subplots()
-        df_filtered.plot(kind='line', x=x_column, y=y_column, ax=ax)
-        
+        st.write(f"kN Minimo: {df['kN'].min():.2f} kN | kN Maximo: {df['kN'].max():.2f} kN")
+        st.write(f"mm Minimo: {df['mm'].min():.2f} mm | mm Maximo: {df['mm'].max():.2f} mm")
+
+        # Criar o primeiro gráfico (kN x CycleCount)
+        fig1, ax1 = plt.subplots()
+        df.plot(kind='line', x='CycleCount', y='kN', ax=ax1)
+        plt.xlabel("CycleCount")
+        plt.ylabel("kN")
+        plt.title("Força (kN) vs. Ciclos")
         plt.ylim(-1.8, 1.8)
-        plt.xlim(0, df_filtered[x_column].max())
-        
-        # Nome dos campos
-        plt.xlabel(x_column)
-        plt.ylabel(y_column)
-        plt.title(f'{y_column} x {x_column}')
-        
-        st.pyplot(fig)
+        plt.xlim(0, df['CycleCount'].max())
+        st.pyplot(fig1)
+
+        # Criar o segundo gráfico (mm x CycleCount)
+        fig2, ax2 = plt.subplots()
+        df.plot(kind='line', x='CycleCount', y='mm', ax=ax2, color='orange')
+        plt.xlabel("CycleCount")
+        plt.ylabel("mm")
+        plt.title("Deslocamento (mm) vs. Ciclos")
+        plt.ylim(-1.8, 1.8)
+        plt.xlim(0, df['CycleCount'].max())
+        st.pyplot(fig2)
     else:
-        st.write("O DataFrame filtrado está vazio. Verifique se as colunas selecionadas contêm dados.")
+        st.write("O DataFrame está vazio. Verifique os dados do arquivo CSV.")
