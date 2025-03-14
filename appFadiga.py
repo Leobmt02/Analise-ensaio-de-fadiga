@@ -34,7 +34,13 @@ if uploaded_file is not None:
         plt.xlabel("CycleCount")
         plt.ylabel("kN")
         plt.title("Força (kN) vs. Ciclos")
-        plt.ylim(-1.8, 1.8)
+
+        # Ajustar dinamicamente os limites de y para kN
+        min_kN = df['kN'].min()
+        max_kN = df['kN'].max()
+        plt.ylim(min_kN - 0.1 * (max_kN - min_kN), max_kN + 0.1 * (max_kN - min_kN))
+
+        # Ajustar o limite de x para CycleCount
         plt.xlim(0, df['CycleCount'].max())
         st.pyplot(fig1)
 
@@ -44,7 +50,13 @@ if uploaded_file is not None:
         plt.xlabel("CycleCount")
         plt.ylabel("mm")
         plt.title("Deslocamento (mm) vs. Ciclos")
-        plt.ylim(-1.8, 1.8)
+
+        # Ajustar dinamicamente os limites de y para mm
+        min_mm = df['mm'].min()
+        max_mm = df['mm'].max()
+        plt.ylim(min_mm - 0.1 * (max_mm - min_mm), max_mm + 0.1 * (max_mm - min_mm))
+
+        # Ajustar o limite de x para CycleCount
         plt.xlim(0, df['CycleCount'].max())
         st.pyplot(fig2)
     else:
